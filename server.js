@@ -9,6 +9,9 @@ const app = express();
 app.enable("trust proxy");
 app.use(express.json());
 
+app.get("/", async (req, res) => {
+  res.status(200).send("Welcome to the greet API.");
+});
 /** GET. */
 app.get("/api/hello", async (req, res) => {
   const ip = "24.48.0.1"; // req.ip; // Local test URL: "24.48.0.1";
@@ -30,6 +33,10 @@ app.get("/api/hello", async (req, res) => {
         `Hello, ${visitorName}!, the temperature is ${temperature} degrees Celcius in ${city}`) ||
       null,
   });
+});
+
+app.use(async (req, res, next) => {
+  return res.status(404).send("Endpoint does not exist");
 });
 
 const PORT = process.env.PORT || 3000;
