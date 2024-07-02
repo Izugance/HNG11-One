@@ -14,7 +14,7 @@ async function getCity(ip) {
   const response = await axios.get(
     `
       https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.IPGEOLOCATIONIO_KEY}&ip=${ip}&fields=city
-    `,
+    `
   );
   return response.data.city;
 }
@@ -31,8 +31,6 @@ async function getTemperature(ip) {
   return response.data.main.temp;
 }
 
-
-
 /** FILL ME */
 async function getLatLon(ip) {
   const response = await axios.get(
@@ -44,7 +42,7 @@ async function getLatLon(ip) {
 }
 
 /** GET. */
-app.use("/api/hello", async (req, res) => {
+app.get("/api/hello", async (req, res) => {
   // Get location data from geolocation API.
   const ip = req.ip;
   const latLon = await getLatLon(ip);
