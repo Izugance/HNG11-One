@@ -14,7 +14,7 @@ app.get("/", async (req, res) => {
 });
 /** GET. */
 app.get("/api/hello", async (req, res) => {
-  const ip = "24.48.0.1"; // req.ip; // Local test URL: "24.48.0.1";
+  const ip = req.ip; // Local test URL: "24.48.0.1";
   const latLon = await getLatLon(ip);
   const city = await getCity(ip);
   let temperature = null;
